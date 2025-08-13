@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { SushiModule } from './sushi/sushi.module';
 import { ChefModule } from './chef/chef.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { ChefModule } from './chef/chef.module';
       autoLoadEntities:true,
       synchronize:true,
       
-    }), SushiModule, ChefModule
+    }), SushiModule, ChefModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

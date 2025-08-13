@@ -49,8 +49,8 @@ export class ChefService {
   async sushiByChefs(){
     
     return await this.chefRepository.
-    createQueryBuilder('chef').
-    leftJoinAndSelect('chef.sushi','sushi').getMany()
+    createQueryBuilder('chef')
+    .leftJoinAndSelect('chef.sushi','sushi').getMany()
 
   }
   
