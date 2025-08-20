@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { SushiService } from './sushi.service';
 import { CreateSushiDto } from './dto/create-sushi.dto';
 import { UpdateSushiDto } from './dto/update-sushi.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('sushi')
 export class SushiController {
@@ -19,6 +20,7 @@ export class SushiController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard())
   findOne(@Param('id') id: string) {
     return this.sushiService.findOne(id);
   }
