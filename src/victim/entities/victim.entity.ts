@@ -12,11 +12,15 @@ export class Victim {
     @Column('numeric',{
         nullable:false
     })
-    price:number;
+    age:number;
     @Column('text',{
         array:true
     })
-    ingredients:string[]
+    family:string[]
+    @Column('text',{
+        nullable:false
+    })
+    murderReason:string;
     @Column('date',{
         default:()=>'CURRENT_TIMESTAMP'
     })

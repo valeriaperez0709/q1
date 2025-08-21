@@ -2,7 +2,7 @@ import { IsString } from "class-validator";
 
 export class CreateCaseDto {
     @IsString()
-    name:string;
+    title:string;
     @IsString()
-    skill:string;
+    description:string;
 }

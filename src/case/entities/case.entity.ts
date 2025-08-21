@@ -6,15 +6,15 @@ export class Case {
     @PrimaryGeneratedColumn('uuid')
     id:string;
     @Column()
-    name:string;
+    title:string;
 
     @Column()
-    skill:string;
+    description:string;
 
     @OneToMany(()=>Victim,v=>v.case)
     victim:Victim[];
     @BeforeInsert()
     nameToUpperCase(){
-        this.name=this.name.toUpperCase();
+        this.title=this.title.toUpperCase();
     }
 }

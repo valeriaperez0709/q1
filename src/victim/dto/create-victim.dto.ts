@@ -7,9 +7,11 @@ export class CreateVictimDto {
     @Min(1)
     @IsPositive()
     @IsInt()
-    price:number;
+    age:number;
     @IsString({each:true})
     @IsArray()
-    ingredients:string[]
+    family:string[]
+    @IsString()
+    murderReason:string;
 
 }
