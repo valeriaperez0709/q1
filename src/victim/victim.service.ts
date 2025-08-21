@@ -28,10 +28,10 @@ export class VictimService {
   async findAll() {
     let victim=await this.victimRepository.find({
       where:{
-        price:MoreThan(20)
+        age:MoreThan(20)
       },
       order:{
-        price:'DESC'
+        age:'DESC'
       }
     });
     return victim;
