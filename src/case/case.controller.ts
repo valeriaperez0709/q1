@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CaseService } from './case.service';
 import { CreateCaseDto } from './dto/create-case.dto';
 import { UpdateCaseDto } from './dto/update-case.dto';
@@ -32,13 +40,12 @@ export class CaseController {
   remove(@Param('id') id: string) {
     return this.caseService.remove(+id);
   }
-  @Get(":caseId/victim")
-  async getVictimByCase(@Param('caseId') caseId:string):
-  Promise<Victim[]>{
+  @Get(':caseId/victim')
+  async getVictimByCase(@Param('caseId') caseId: string): Promise<Victim[]> {
     return this.caseService.victimByCase(caseId);
   }
-  @Get("/casesxvictims/consulta")
-  async getAllVictimCases(){
+  @Get('/casesxvictims/consulta')
+  async getAllVictimCases() {
     return this.caseService.victimByCases();
   }
 }

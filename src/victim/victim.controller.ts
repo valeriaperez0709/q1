@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { VictimService } from './victim.service';
 import { CreateVictimDto } from './dto/create-victim.dto';
 import { UpdateVictimDto } from './dto/update-victim.dto';
@@ -8,10 +17,12 @@ import { AuthGuard } from '@nestjs/passport';
 export class VictimController {
   constructor(private readonly victimService: VictimService) {}
 
-  @Post(":caseId")
-  create(@Body() createVictimDto: CreateVictimDto
-  ,@Param("caseId")caseId:string) {
-    return this.victimService.create(createVictimDto,caseId);
+  @Post(':caseId')
+  create(
+    @Body() createVictimDto: CreateVictimDto,
+    @Param('caseId') caseId: string,
+  ) {
+    return this.victimService.create(createVictimDto, caseId);
   }
 
   @Get()

@@ -10,12 +10,12 @@ import { Victim } from 'src/victim/entities/victim.entity';
 export class CaseService {
   constructor(
     @InjectRepository(Case)
-    private readonly caseRepository:Repository<Case>,
+    private readonly caseRepository: Repository<Case>,
     @InjectRepository(Victim)
-    private readonly victimRepository:Repository<Victim>
-  ){}
+    private readonly victimRepository: Repository<Victim>,
+  ) {}
   async create(createCaseDto: CreateCaseDto) {
-    const newCase=this.caseRepository.create(createCaseDto);
+    const newCase = this.caseRepository.create(createCaseDto);
     await this.caseRepository.save(newCase);
     return newCase;
   }
@@ -35,22 +35,20 @@ export class CaseService {
   remove(id: number) {
     return `This action removes a #${id} case`;
   }
-  async victimByCase(caseid:string):Promise<Victim[]>{
-    const c=await this.caseRepository.
-    findOneBy({id:caseid});
-    if(!c){
-      throw new NotFoundException("No existe")
+  async victimByCase(caseid: string): Promise<Victim[]> {
+    const c = await this.caseRepository.findOneBy({ id: caseid });
+    if (!c) {
+      throw new NotFoundException('No existe');
     }
-    const victim=await this.victimRepository.find({
-      where:{case:{id:caseid}}
-    })
+    const victim = await this.victimRepository.find({
+      where: { case: { id: caseid } },
+    });
     return victim;
   }
-  async victimByCases(){
-    return await this.caseRepository.
-    createQueryBuilder('case')
-    .leftJoinAndSelect('case.victim','victim').getMany()
-
+  async victimByCases() {
+    return await this.caseRepository
+      .createQueryBuilder('case')
+      .leftJoinAndSelect('case.victim', 'victim')
+      .getMany();
   }
-  
 }

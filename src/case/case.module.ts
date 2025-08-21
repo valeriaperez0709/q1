@@ -7,7 +7,7 @@ import { Case } from './entities/case.entity';
 @Module({
   controllers: [CaseController],
   providers: [CaseService],
-  imports:[TypeOrmModule.forFeature([Case,Victim])],
-  exports:[CaseService,TypeOrmModule]
+  imports: [TypeOrmModule.forFeature([Case, Victim])],
+  exports: [CaseService, TypeOrmModule],
 })
 export class CaseModule {}
