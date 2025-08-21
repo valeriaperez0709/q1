@@ -1,8 +1,8 @@
-import { Sushi } from "src/sushi/entities/sushi.entity";
+import { Victim } from "src/victim/entities/victim.entity";
 import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Chef {
+export class Case {
     @PrimaryGeneratedColumn('uuid')
     id:string;
     @Column()
@@ -11,8 +11,8 @@ export class Chef {
     @Column()
     skill:string;
 
-    @OneToMany(()=>Sushi,sushi=>sushi.chef)
-    sushi:Sushi[];
+    @OneToMany(()=>Victim,v=>v.case)
+    victim:Victim[];
     @BeforeInsert()
     nameToUpperCase(){
         this.name=this.name.toUpperCase();

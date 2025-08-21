@@ -1,8 +1,8 @@
-import { Chef } from "src/chef/entities/chef.entity";
+import { Case } from "src/case/entities/case.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Sushi {
+export class Victim {
     @PrimaryGeneratedColumn("uuid")
     id:string;
     @Column('text',{
@@ -21,6 +21,6 @@ export class Sushi {
         default:()=>'CURRENT_TIMESTAMP'
     })
     createAt?:Date;
-    @ManyToOne(()=>Chef,chef=>chef.sushi)
-    chef:Chef;
+    @ManyToOne(()=>Case,c=>c.victim)
+    case:Case;
 }

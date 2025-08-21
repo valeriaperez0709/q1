@@ -1,6 +1,6 @@
 import { IsArray, IsInt, IsPositive, IsString, Min, MinLength } from "class-validator";
 
-export class CreateSushiDto {
+export class CreateVictimDto {
     @IsString()
     @MinLength(2)
     name:string;
