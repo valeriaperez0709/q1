@@ -28,17 +28,17 @@ export class CaseController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.caseService.findOne(+id);
+    return this.caseService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCaseDto: UpdateCaseDto) {
-    return this.caseService.update(+id, updateCaseDto);
+    return this.caseService.update(id, updateCaseDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.caseService.remove(+id);
+    return this.caseService.remove(id);
   }
   @Get(':caseId/victim')
   async getVictimByCase(@Param('caseId') caseId: string): Promise<Victim[]> {

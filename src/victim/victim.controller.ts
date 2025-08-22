@@ -6,12 +6,11 @@ import {
   Patch,
   Param,
   Delete,
-  UseGuards,
 } from '@nestjs/common';
 import { VictimService } from './victim.service';
 import { CreateVictimDto } from './dto/create-victim.dto';
 import { UpdateVictimDto } from './dto/update-victim.dto';
-import { AuthGuard } from '@nestjs/passport';
+
 
 @Controller('victim')
 export class VictimController {
@@ -31,8 +30,8 @@ export class VictimController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard())
   findOne(@Param('id') id: string) {
+    console.log("SDSDSSD", id)
     return this.victimService.findOne(id);
   }
 

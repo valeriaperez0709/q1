@@ -24,17 +24,33 @@ export class CaseService {
     return this.caseRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} case`;
+  async findOne(id: string) {
+    const c = await this.caseRepository.findOneBy({ id: id });
+    console.log(c);
+    if (!c) {
+      throw new NotFoundException('Case no encontrado');
+    }
+    return c;
   }
 
-  update(id: number, updateCaseDto: UpdateCaseDto) {
-    return `This action updates a #${id} case`;
+  async update(id: string, updateCaseDto: UpdateCaseDto) {
+    const c = await this.caseRepository.preload({
+      id:id,
+      ...updateCaseDto,
+    });
+    if (!c) {
+      throw new NotFoundException('No exite');
+    }
+    this.caseRepository.save({ id: id });
+    return c;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} case`;
+  async remove(id: string) {
+    const c = await this.findOne(id);
+    this.caseRepository.delete({ id:id });
+    return c;
   }
+
   async victimByCase(caseid: string): Promise<Victim[]> {
     const c = await this.caseRepository.findOneBy({ id: caseid });
     if (!c) {
